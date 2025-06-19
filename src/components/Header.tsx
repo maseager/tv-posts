@@ -53,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
               <button className="px-4 py-1.5 text-sm text-gray-300 hover:text-white border border-gray-600 hover:border-gray-500 rounded-md font-medium transition-colors">
                 Login
               </button>
-              <button className="px-4 py-1.5 text-sm bg-[#77d4fc] hover:bg-[#3ab0e3] text-white rounded-md font-medium transition-colors">
+              <button className="px-4 py-1.5 text-sm bg-[#2a9fd8] hover:bg-[#77d4fc] text-white rounded-md font-medium transition-colors">
                 Register
               </button>
             </div>
