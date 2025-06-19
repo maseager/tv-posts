@@ -96,7 +96,18 @@ export const generateSearchSuggestions = async (query: string): Promise<SearchSu
         cleanContent = cleanContent.replace(/^```\s*/, '').replace(/\s*```$/, '');
       }
       
-      const suggestions = JSON.parse(cleanContent) as SearchSuggestion[];
+      // Extract valid JSON by finding the array boundaries
+      const startIndex = cleanContent.indexOf('[');
+      const lastIndex = cleanContent.lastIndexOf(']');
+      
+      if (startIndex === -1 || lastIndex === -1 || startIndex >= lastIndex) {
+        console.warn('No valid JSON array found in AI response');
+        return getLocalSuggestions(query);
+      }
+      
+      const jsonString = cleanContent.substring(startIndex, lastIndex + 1);
+      
+      const suggestions = JSON.parse(jsonString) as SearchSuggestion[];
       return suggestions.slice(0, 12);
     } catch (parseError) {
       console.error('Error parsing AI suggestions:', parseError);

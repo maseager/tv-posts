@@ -339,12 +339,20 @@ export const performAISearch = async (
           const suggestionsContent = suggestionsResponse.choices[0]?.message?.content?.trim();
           if (suggestionsContent) {
             // Strip markdown code block delimiters if present
-            const cleanedSuggestions = suggestionsContent
+            let cleanedSuggestions = suggestionsContent
               .replace(/^```json\s*/, '')
               .replace(/^```\s*/, '')
               .replace(/\s*```$/, '')
               .trim();
-            aiSuggestions = JSON.parse(cleanedSuggestions);
+            
+            // Extract valid JSON array by finding the array boundaries
+            const startIndex = cleanedSuggestions.indexOf('[');
+            const lastIndex = cleanedSuggestions.lastIndexOf(']');
+            
+            if (startIndex !== -1 && lastIndex !== -1 && startIndex < lastIndex) {
+              const jsonString = cleanedSuggestions.substring(startIndex, lastIndex + 1);
+              aiSuggestions = JSON.parse(jsonString);
+            }
           }
         } catch (parseError) {
           console.error('Error parsing AI suggestions:', parseError);
@@ -425,12 +433,20 @@ async function performAISemanticSearch(query: string, options: SearchOptions = {
       const analysisContent = analysisResponse.choices[0]?.message?.content?.trim();
       if (analysisContent) {
         // Strip markdown code block delimiters if present
-        const cleanedContent = analysisContent
+        let cleanedContent = analysisContent
           .replace(/^```json\s*/, '')
           .replace(/^```\s*/, '')
           .replace(/\s*```$/, '')
           .trim();
-        searchAnalysis = JSON.parse(cleanedContent);
+        
+        // Extract valid JSON object by finding the object boundaries
+        const startIndex = cleanedContent.indexOf('{');
+        const lastIndex = cleanedContent.lastIndexOf('}');
+        
+        if (startIndex !== -1 && lastIndex !== -1 && startIndex < lastIndex) {
+          const jsonString = cleanedContent.substring(startIndex, lastIndex + 1);
+          searchAnalysis = JSON.parse(jsonString);
+        }
       }
     } catch (parseError) {
       console.error('Error parsing search analysis:', parseError);
