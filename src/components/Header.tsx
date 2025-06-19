@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Search, Sun, Moon, User, Globe } from 'lucide-react';
+import { Sun, Moon, User } from 'lucide-react';
+import { SearchWithTypeahead } from './SearchWithTypeahead';
+import type { SearchSuggestion } from '../services/openai';
+import type { SearchResult } from '../services/searchService';
 
 interface HeaderProps {
   isDarkMode: boolean;
@@ -8,6 +11,16 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
   const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSuggestionSelect = (suggestion: SearchSuggestion) => {
+    console.log('Selected suggestion:', suggestion);
+    // Handle suggestion selection logic here
+  };
+
+  const handleSearchResults = (results: SearchResult[]) => {
+    console.log('Search results:', results);
+    // Handle search results logic here
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
@@ -26,21 +39,25 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
           </a>
 
           {/* Search Bar */}
-          <div className="flex-1 max-w-2xl mx-6">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="text"
-                placeholder="Search TV Posts"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-gray-800 border border-gray-700 rounded-full py-2 pl-10 pr-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-          </div>
+          <SearchWithTypeahead
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            onSuggestionSelect={handleSuggestionSelect}
+            onSearchResults={handleSearchResults}
+          />
 
           {/* Right Icons */}
           <div className="flex items-center space-x-4">
+            {/* Auth Buttons */}
+            <div className="flex items-center space-x-2">
+              <button className="px-4 py-1.5 text-sm text-gray-300 hover:text-[#77d4fc] border border-gray-600 hover:border-gray-500 rounded-md font-medium transition-colors">
+                Login
+              </button>
+              <button className="px-4 py-1.5 text-sm bg-[#2a9fd8] hover:bg-[#77d4fc] text-white hover:text-black rounded-md font-medium transition-colors">
+                Register
+              </button>
+            </div>
+            
             <button
               onClick={toggleDarkMode}
               className="p-2 text-gray-300 hover:text-white transition-colors"

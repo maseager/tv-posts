@@ -9,14 +9,6 @@ const WelcomeSection: React.FC = () => {
       <p className="text-xl text-gray-300 mb-8">
         Connect with TV show fans around the world!
       </p>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <button className="px-8 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors">
-          Login
-        </button>
-        <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
-          Register Free
-        </button>
-      </div>
     </div>
   );
 };
