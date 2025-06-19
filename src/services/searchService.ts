@@ -338,7 +338,13 @@ export const performAISearch = async (
         try {
           const suggestionsContent = suggestionsResponse.choices[0]?.message?.content?.trim();
           if (suggestionsContent) {
-            aiSuggestions = JSON.parse(suggestionsContent);
+            // Strip markdown code block delimiters if present
+            const cleanedSuggestions = suggestionsContent
+              .replace(/^```json\s*/, '')
+              .replace(/^```\s*/, '')
+              .replace(/\s*```$/, '')
+              .trim();
+            aiSuggestions = JSON.parse(cleanedSuggestions);
           }
         } catch (parseError) {
           console.error('Error parsing AI suggestions:', parseError);
@@ -418,7 +424,13 @@ async function performAISemanticSearch(query: string, options: SearchOptions = {
     try {
       const analysisContent = analysisResponse.choices[0]?.message?.content?.trim();
       if (analysisContent) {
-        searchAnalysis = JSON.parse(analysisContent);
+        // Strip markdown code block delimiters if present
+        const cleanedContent = analysisContent
+          .replace(/^```json\s*/, '')
+          .replace(/^```\s*/, '')
+          .replace(/\s*```$/, '')
+          .trim();
+        searchAnalysis = JSON.parse(cleanedContent);
       }
     } catch (parseError) {
       console.error('Error parsing search analysis:', parseError);
