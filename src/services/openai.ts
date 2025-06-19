@@ -41,9 +41,11 @@ export const generateSearchSuggestions = async (query: string): Promise<SearchSu
       messages: [
         {
           role: 'system',
-          content: `You are a TV show search assistant. Generate 8-12 diverse, categorized search suggestions based on the user's input. 
+          content: `You are a TV show search assistant. Generate 8-12 diverse, categorized search suggestions based on the user's input.
           
-          Return suggestions in this JSON format:
+          CRITICAL: You MUST return ONLY a valid JSON array. Do not include any markdown formatting, code blocks, or explanatory text. All property names must be enclosed in double quotes.
+          
+          Return suggestions in this exact JSON format:
           [
             {
               "text": "suggestion text",
@@ -67,7 +69,9 @@ export const generateSearchSuggestions = async (query: string): Promise<SearchSu
           
           Focus on popular and relevant TV content. Include confidence scores (0.1-1.0).
           Prioritize variety across different types and ensure high-quality, relevant suggestions.
-          Include both current and classic TV content when appropriate.`
+          Include both current and classic TV content when appropriate.
+          
+          IMPORTANT: Return ONLY the JSON array, no other text or formatting.`
         },
         {
           role: 'user',
