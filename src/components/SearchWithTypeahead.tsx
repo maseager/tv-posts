@@ -249,8 +249,8 @@ export const SearchWithTypeahead: React.FC<SearchWithTypeaheadProps> = ({
           )}
           {openAIEnabled && !isLoading && (
             <div className="flex items-center space-x-1">
-              <Sparkles className="w-4 h-4 text-purple-500" />
-              <span className="text-xs text-purple-400 font-medium">AI</span>
+              <Sparkles className="w-4 h-4 text-[#77d4fc]" />
+              <span className="text-xs text-[#77d4fc] font-medium">AI</span>
             </div>
           )}
           {!openAIEnabled && !isLoading && (
@@ -272,7 +272,7 @@ export const SearchWithTypeahead: React.FC<SearchWithTypeaheadProps> = ({
                 }}
                 className={`flex-1 px-4 py-3 text-sm font-medium transition-all duration-200 ${
                   activeTab === 'suggestions'
-                    ? 'text-purple-400 bg-gray-800 border-b-2 border-purple-500'
+                    ? 'text-[#77d4fc] bg-gray-800 border-b-2 border-[#77d4fc]'
                     : 'text-gray-400 hover:text-gray-200 hover:bg-gray-700'
                 }`}
               >
@@ -288,7 +288,7 @@ export const SearchWithTypeahead: React.FC<SearchWithTypeaheadProps> = ({
                 }}
                 className={`flex-1 px-4 py-3 text-sm font-medium transition-all duration-200 ${
                   activeTab === 'results'
-                    ? 'text-purple-400 bg-gray-800 border-b-2 border-purple-500'
+                    ? 'text-[#77d4fc] bg-gray-800 border-b-2 border-[#77d4fc]'
                     : 'text-gray-400 hover:text-gray-200 hover:bg-gray-700'
                 }`}
               >
@@ -313,7 +313,7 @@ export const SearchWithTypeahead: React.FC<SearchWithTypeaheadProps> = ({
                     key={`result-${result.id}`}
                     onClick={() => handleResultClick(result)}
                     className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-all duration-150 flex items-start space-x-3 group ${
-                      index === selectedIndex ? 'bg-gray-700 border-r-2 border-purple-500' : 'hover:bg-gray-700'
+                      index === selectedIndex ? 'bg-gray-700 border-r-2 border-[#77d4fc]' : 'hover:bg-gray-700'
                     }`}
                   >
                     <div className="flex-shrink-0 mt-1">
@@ -322,6 +322,7 @@ export const SearchWithTypeahead: React.FC<SearchWithTypeaheadProps> = ({
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-2 mb-1">
                         <span className="font-medium text-gray-200 truncate text-sm group-hover:text-purple-400 transition-colors">
+                        <span className="font-medium text-gray-200 truncate text-sm group-hover:text-[#77d4fc] transition-colors">
                           {result.title}
                         </span>
                         <span className="text-xs text-gray-400 flex-shrink-0">
@@ -329,7 +330,7 @@ export const SearchWithTypeahead: React.FC<SearchWithTypeaheadProps> = ({
                         </span>
                       </div>
                       <div className="flex items-center space-x-2 text-xs text-gray-500 mb-1">
-                        <span className="bg-purple-900 text-purple-300 px-2 py-1 rounded-full font-medium">
+                        <span className="bg-[#77d4fc]/20 text-[#77d4fc] px-2 py-1 rounded-full font-medium">
                           {result.tv_show}
                         </span>
                         {result.season && result.episode && (
@@ -357,7 +358,7 @@ export const SearchWithTypeahead: React.FC<SearchWithTypeaheadProps> = ({
                         </div>
                       </div>
                     </div>
-                    <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-purple-400 transition-colors flex-shrink-0 mt-1" />
+                    <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-[#77d4fc] transition-colors flex-shrink-0 mt-1" />
                   </button>
                 ))}
               </div>
@@ -428,8 +429,8 @@ export const SearchWithTypeahead: React.FC<SearchWithTypeaheadProps> = ({
             <div className="flex items-center space-x-2">
               {openAIEnabled ? (
                 <div className="flex items-center space-x-1">
-                  <Sparkles className="w-3 h-3 text-purple-500" />
-                  <span className="text-purple-400 font-medium">AI-powered search</span>
+                  <Sparkles className="w-3 h-3 text-[#77d4fc]" />
+                  <span className="text-[#77d4fc] font-medium">AI-powered search</span>
                 </div>
               ) : (
                 <span>💡 Add OpenAI API key for smarter suggestions</span>
@@ -470,7 +471,7 @@ const SuggestionItem: React.FC<SuggestionItemProps> = ({
   <button
     onClick={() => onClick(suggestion)}
     className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-all duration-150 flex items-center space-x-3 group ${
-      index === selectedIndex ? 'bg-gray-700 border-r-2 border-purple-500' : 'hover:bg-gray-700'
+      index === selectedIndex ? 'bg-gray-700 border-r-2 border-[#77d4fc]' : 'hover:bg-gray-700'
     }`}
   >
     <div className="flex-shrink-0">
@@ -478,7 +479,7 @@ const SuggestionItem: React.FC<SuggestionItemProps> = ({
     </div>
     <div className="flex-1 min-w-0">
       <div className="flex items-center space-x-2 mb-1">
-        <span className="font-medium text-gray-200 truncate group-hover:text-purple-400 transition-colors">
+        <span className="font-medium text-gray-200 truncate group-hover:text-[#77d4fc] transition-colors">
           {suggestion.text}
         </span>
         <span className="text-xs text-gray-400 bg-gray-600 px-2 py-1 rounded-full flex-shrink-0">
@@ -496,7 +497,7 @@ const SuggestionItem: React.FC<SuggestionItemProps> = ({
         </p>
       )}
       {suggestion.metadata?.network && (
-        <p className="text-xs text-purple-400 font-medium">
+        <p className="text-xs text-[#77d4fc] font-medium">
           {suggestion.metadata.network}
         </p>
       )}
@@ -514,7 +515,7 @@ const SuggestionItem: React.FC<SuggestionItemProps> = ({
           </span>
         </div>
       )}
-      <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-purple-400 transition-colors" />
+      <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-[#77d4fc] transition-colors" />
     </div>
   </button>
 );
