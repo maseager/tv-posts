@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Heart, MessageCircle, Repeat2, Share, MoreHorizontal } from 'lucide-react';
+import { getSlugFromTVTag } from '../services/tvShowService';
 
 interface PostProps {
   id: string;
   user: {
     username: string;
     avatar: string;
+    isAI?: boolean;
   };
   timestamp: string;
   tvTag: string;
@@ -26,6 +29,8 @@ const Post: React.FC<PostProps> = ({
   comments,
   reposts,
 }) => {
+  const showSlug = getSlugFromTVTag(tvTag);
+
   return (
     <div className="bg-gray-800 rounded-lg p-6 mb-4 border border-gray-700">
       {/* Post Header */}
@@ -35,13 +40,22 @@ const Post: React.FC<PostProps> = ({
             <img
               src={user.avatar}
               alt={user.username}
-              className="w-10 h-10 rounded-full cursor-pointer hover:ring-2 hover:ring-[#77d4fc] transition-all duration-200"
+              className={`w-10 h-10 rounded-full cursor-pointer hover:ring-2 hover:ring-[#77d4fc] transition-all duration-200 ${
+                user.isAI ? 'ring-2 ring-purple-500' : ''
+              }`}
             />
           </a>
           <div>
             <a href={`/user/${user.username}`}>
-              <h3 className="text-white font-medium hover:text-[#77d4fc] transition-colors duration-200 cursor-pointer">
+              <h3 className={`font-medium hover:text-[#77d4fc] transition-colors duration-200 cursor-pointer ${
+                user.isAI ? 'text-purple-400' : 'text-white'
+              }`}>
                 {user.username}
+                {user.isAI && (
+                  <span className="ml-2 text-xs bg-purple-500 text-white px-2 py-1 rounded-full">
+                    AI
+                  </span>
+                )}
               </h3>
             </a>
             <p className="text-gray-400 text-sm">{timestamp}</p>
@@ -54,9 +68,12 @@ const Post: React.FC<PostProps> = ({
 
       {/* Post Content */}
       <p className="mb-4 leading-relaxed">
-        <span className="text-[#77d4fc] font-medium hover:text-[#3ab0e3] transition-colors duration-200 cursor-pointer">
+        <Link 
+          to={`/tv/${showSlug}`}
+          className="text-[#77d4fc] font-medium hover:text-[#3ab0e3] transition-colors duration-200 cursor-pointer"
+        >
           ~{tvTag}
-        </span>
+        </Link>
         <span className="text-white"> {content}</span>
       </p>
 

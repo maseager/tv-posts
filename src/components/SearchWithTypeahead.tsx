@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Tv, User, Hash, MessageSquare, Loader2, Users, Sparkles, TrendingUp, Clock, Star, ChevronRight, Filter } from 'lucide-react';
 import { generateSearchSuggestions, isOpenAIAvailable, getLocalSuggestions, SearchSuggestion } from '../services/openai';
 import { performAISearch, SearchResult } from '../services/searchService';
+import { getSlugFromTVTag } from '../services/tvShowService';
 
 interface SearchWithTypeaheadProps {
   searchQuery: string;
@@ -16,6 +18,7 @@ export const SearchWithTypeahead: React.FC<SearchWithTypeaheadProps> = ({
   onSuggestionSelect,
   onSearchResults
 }) => {
+  const navigate = useNavigate();
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -144,18 +147,34 @@ export const SearchWithTypeahead: React.FC<SearchWithTypeaheadProps> = ({
   };
 
   const handleSuggestionClick = (suggestion: SearchSuggestion) => {
-    onSearchChange(suggestion.text);
-    setShowDropdown(false);
-    setSelectedIndex(-1);
-    onSuggestionSelect?.(suggestion);
-    inputRef.current?.focus();
+    if (suggestion.type === 'tv_show') {
+      // Navigate to TV show page
+      const slug = getSlugFromTVTag(suggestion.text);
+      navigate(`/tv/${slug}`);
+      setShowDropdown(false);
+      setSelectedIndex(-1);
+    } else {
+      onSearchChange(suggestion.text);
+      setShowDropdown(false);
+      setSelectedIndex(-1);
+      onSuggestionSelect?.(suggestion);
+      inputRef.current?.focus();
+    }
   };
 
   const handleResultClick = (result: SearchResult) => {
-    onSearchChange(result.title);
-    setShowDropdown(false);
-    setSelectedIndex(-1);
-    inputRef.current?.focus();
+    if (result.match_type === 'tv_show') {
+      // Navigate to TV show page
+      const slug = getSlugFromTVTag(result.tv_show);
+      navigate(`/tv/${slug}`);
+      setShowDropdown(false);
+      setSelectedIndex(-1);
+    } else {
+      onSearchChange(result.title);
+      setShowDropdown(false);
+      setSelectedIndex(-1);
+      inputRef.current?.focus();
+    }
   };
 
   // Close dropdown when clicking outside

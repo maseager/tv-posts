@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Info } from 'lucide-react';
 
 interface Show {
@@ -60,7 +61,12 @@ const MostWatched: React.FC = () => {
                 {show.viewers}
               </div>
               <div className="text-[10px] text-gray-500">
-                watchers
+              <Link 
+                to={`/tv/${show.name.toLowerCase().replace(/\s+/g, '-')}`}
+                className="text-white font-medium text-sm hover:text-[#77d4fc] transition-colors duration-200 cursor-pointer"
+              >
+                {show.name}
+              </Link>
               </div>
             </div>
           </div>
