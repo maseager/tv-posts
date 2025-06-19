@@ -84,7 +84,15 @@ export const generateSearchSuggestions = async (query: string): Promise<SearchSu
     }
 
     try {
-      const suggestions = JSON.parse(content) as SearchSuggestion[];
+      // Strip markdown code block delimiters if present
+      let cleanContent = content;
+      if (cleanContent.startsWith('```json')) {
+        cleanContent = cleanContent.replace(/^```json\s*/, '').replace(/\s*```$/, '');
+      } else if (cleanContent.startsWith('```')) {
+        cleanContent = cleanContent.replace(/^```\s*/, '').replace(/\s*```$/, '');
+      }
+      
+      const suggestions = JSON.parse(cleanContent) as SearchSuggestion[];
       return suggestions.slice(0, 12);
     } catch (parseError) {
       console.error('Error parsing AI suggestions:', parseError);
