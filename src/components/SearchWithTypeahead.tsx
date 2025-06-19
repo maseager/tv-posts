@@ -321,7 +321,6 @@ export const SearchWithTypeahead: React.FC<SearchWithTypeaheadProps> = ({
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-2 mb-1">
-                        <span className="font-medium text-gray-900 truncate text-sm group-hover:text-purple-600 transition-colors">
                         <span className="font-medium text-gray-200 truncate text-sm group-hover:text-purple-400 transition-colors">
                           {result.title}
                         </span>
@@ -479,7 +478,6 @@ const SuggestionItem: React.FC<SuggestionItemProps> = ({
     </div>
     <div className="flex-1 min-w-0">
       <div className="flex items-center space-x-2 mb-1">
-        <span className="font-medium text-gray-900 truncate group-hover:text-purple-600 transition-colors">
         <span className="font-medium text-gray-200 truncate group-hover:text-purple-400 transition-colors">
           {suggestion.text}
         </span>
