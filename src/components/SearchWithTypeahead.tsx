@@ -321,7 +321,6 @@ export const SearchWithTypeahead: React.FC<SearchWithTypeaheadProps> = ({
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-2 mb-1">
-                        <span className="font-medium text-gray-200 truncate text-sm group-hover:text-purple-400 transition-colors">
                         <span className="font-medium text-gray-200 truncate text-sm group-hover:text-[#77d4fc] transition-colors">
                           {result.title}
                         </span>
