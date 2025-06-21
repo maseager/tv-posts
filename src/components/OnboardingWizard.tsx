@@ -153,13 +153,10 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
   if (!isOpen) return null;
 
   return (
-    <div 
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4"
-    >
-      <div className="flex items-center justify-center h-full w-full max-w-2xl">
-        <div 
-          className="bg-gray-800 rounded-xl border border-gray-700 w-full shadow-2xl max-h-[85vh] overflow-hidden"
-        >
+    {/* Modal Backdrop */}
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+      {/* Modal Container */}
+      <div className="bg-gray-800 rounded-xl border border-gray-700 w-full max-w-2xl shadow-2xl max-h-[90vh] overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-700">
             <div className="flex items-center space-x-3">
@@ -328,7 +325,6 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };
