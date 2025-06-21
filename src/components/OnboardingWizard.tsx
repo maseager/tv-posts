@@ -160,171 +160,172 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
         <div 
           className="bg-gray-800 rounded-xl border border-gray-700 w-full shadow-2xl max-h-[85vh] overflow-hidden mt-8"
         >
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-700">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-[#77d4fc]/20 rounded-lg flex items-center justify-center">
-              {currentStepData.icon}
-            </div>
-            <div>
-              <h2 className="text-xl font-bold text-white">AI-Powered Onboarding</h2>
-              <p className="text-sm text-gray-400">Step {currentStep + 1} of {steps.length}</p>
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-
-        {/* Progress Bar */}
-        <div className="px-6 py-4 bg-gray-900">
-          <div className="w-full bg-gray-700 rounded-full h-2">
-            <div 
-              className="bg-gradient-to-r from-[#2a9fd8] to-[#77d4fc] h-2 rounded-full transition-all duration-500"
-              style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
-            />
-          </div>
-        </div>
-
-        {/* Content */}
-        <div 
-          className="p-6 flex flex-col min-h-[400px] max-h-[calc(90vh-200px)] overflow-y-auto"
-        >
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold text-white mb-2">
-              {currentStepData.title}
-            </h3>
-            <p className="text-gray-400">
-              {currentStepData.subtitle}
-            </p>
-          </div>
-
-          <div className="flex-1">
-            {currentStepData.type === 'textarea' && (
-              <textarea
-                value={answers[currentStepData.field!]}
-                onChange={(e) => handleInputChange(currentStepData.field!, e.target.value)}
-                placeholder={currentStepData.placeholder}
-                className="w-full h-32 bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#77d4fc] focus:border-transparent resize-none"
-              />
-            )}
-
-            {currentStepData.type === 'multiple-choice' && (
-              <div className="space-y-3">
-                {currentStepData.options?.map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => handleInputChange(currentStepData.field!, option.value)}
-                    className={`w-full p-4 rounded-lg border-2 text-left transition-all duration-200 ${
-                      answers[currentStepData.field!] === option.value
-                        ? 'border-[#77d4fc] bg-[#77d4fc]/10 text-[#77d4fc]'
-                        : 'border-gray-600 bg-gray-700 text-white hover:border-gray-500'
-                    }`}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <div className={`w-4 h-4 rounded-full border-2 ${
-                        answers[currentStepData.field!] === option.value
-                          ? 'border-[#77d4fc] bg-[#77d4fc]'
-                          : 'border-gray-400'
-                      }`}>
-                        {answers[currentStepData.field!] === option.value && (
-                          <div className="w-full h-full rounded-full bg-white scale-50" />
-                        )}
-                      </div>
-                      <span className="font-medium">{option.label}</span>
-                    </div>
-                  </button>
-                ))}
+          {/* Header */}
+          <div className="flex items-center justify-between p-6 border-b border-gray-700">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-[#77d4fc]/20 rounded-lg flex items-center justify-center">
+                {currentStepData.icon}
               </div>
-            )}
-
-            {currentStepData.type === 'registration' && (
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
-                    <Mail className="w-4 h-4 inline mr-2" />
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    value={answers.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    placeholder="your@email.com"
-                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#77d4fc] focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
-                    <User className="w-4 h-4 inline mr-2" />
-                    Username
-                  </label>
-                  <input
-                    type="text"
-                    value={answers.username}
-                    onChange={(e) => handleInputChange('username', e.target.value)}
-                    placeholder="your_username"
-                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#77d4fc] focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
-                    <Lock className="w-4 h-4 inline mr-2" />
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    value={answers.password}
-                    onChange={(e) => handleInputChange('password', e.target.value)}
-                    placeholder="••••••••"
-                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#77d4fc] focus:border-transparent"
-                  />
-                </div>
+              <div>
+                <h2 className="text-xl font-bold text-white">AI-Powered Onboarding</h2>
+                <p className="text-sm text-gray-400">Step {currentStep + 1} of {steps.length}</p>
               </div>
-            )}
-          </div>
-
-          {/* Actions */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-700">
+            </div>
             <button
-              onClick={handleBack}
-              disabled={currentStep === 0}
-              className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={onClose}
+              className="text-gray-400 hover:text-white transition-colors"
             >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back</span>
+              <X className="w-6 h-6" />
             </button>
+          </div>
 
-            {currentStep < steps.length - 1 ? (
+          {/* Progress Bar */}
+          <div className="px-6 py-4 bg-gray-900">
+            <div className="w-full bg-gray-700 rounded-full h-2">
+              <div 
+                className="bg-gradient-to-r from-[#2a9fd8] to-[#77d4fc] h-2 rounded-full transition-all duration-500"
+                style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
+              />
+            </div>
+          </div>
+
+          {/* Content */}
+          <div 
+            className="p-6 flex flex-col min-h-[400px] max-h-[calc(90vh-200px)] overflow-y-auto"
+          >
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold text-white mb-2">
+                {currentStepData.title}
+              </h3>
+              <p className="text-gray-400">
+                {currentStepData.subtitle}
+              </p>
+            </div>
+
+            <div className="flex-1">
+              {currentStepData.type === 'textarea' && (
+                <textarea
+                  value={answers[currentStepData.field!]}
+                  onChange={(e) => handleInputChange(currentStepData.field!, e.target.value)}
+                  placeholder={currentStepData.placeholder}
+                  className="w-full h-32 bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#77d4fc] focus:border-transparent resize-none"
+                />
+              )}
+
+              {currentStepData.type === 'multiple-choice' && (
+                <div className="space-y-3">
+                  {currentStepData.options?.map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => handleInputChange(currentStepData.field!, option.value)}
+                      className={`w-full p-4 rounded-lg border-2 text-left transition-all duration-200 ${
+                        answers[currentStepData.field!] === option.value
+                          ? 'border-[#77d4fc] bg-[#77d4fc]/10 text-[#77d4fc]'
+                          : 'border-gray-600 bg-gray-700 text-white hover:border-gray-500'
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <div className={`w-4 h-4 rounded-full border-2 ${
+                          answers[currentStepData.field!] === option.value
+                            ? 'border-[#77d4fc] bg-[#77d4fc]'
+                            : 'border-gray-400'
+                        }`}>
+                          {answers[currentStepData.field!] === option.value && (
+                            <div className="w-full h-full rounded-full bg-white scale-50" />
+                          )}
+                        </div>
+                        <span className="font-medium">{option.label}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {currentStepData.type === 'registration' && (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      <Mail className="w-4 h-4 inline mr-2" />
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      value={answers.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      placeholder="your@email.com"
+                      className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#77d4fc] focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      <User className="w-4 h-4 inline mr-2" />
+                      Username
+                    </label>
+                    <input
+                      type="text"
+                      value={answers.username}
+                      onChange={(e) => handleInputChange('username', e.target.value)}
+                      placeholder="your_username"
+                      className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#77d4fc] focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      <Lock className="w-4 h-4 inline mr-2" />
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      value={answers.password}
+                      onChange={(e) => handleInputChange('password', e.target.value)}
+                      placeholder="••••••••"
+                      className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#77d4fc] focus:border-transparent"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-700">
               <button
-                onClick={handleNext}
-                disabled={!canProceed()}
-                className="flex items-center space-x-2 bg-[#2a9fd8] hover:bg-[#77d4fc] text-white hover:text-black px-6 py-2 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={handleBack}
+                disabled={currentStep === 0}
+                className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span>Next</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowLeft className="w-4 h-4" />
+                <span>Back</span>
               </button>
-            ) : (
-              <button
-                onClick={handleSubmit}
-                disabled={!canProceed() || isSubmitting}
-                className="flex items-center space-x-2 bg-[#2a9fd8] hover:bg-[#77d4fc] text-white hover:text-black px-6 py-2 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>Creating your profile...</span>
-                  </>
-                ) : (
-                  <>
-                    <CheckCircle className="w-4 h-4" />
-                    <span>Complete Setup</span>
-                  </>
-                )}
-              </button>
-            )}
+
+              {currentStep < steps.length - 1 ? (
+                <button
+                  onClick={handleNext}
+                  disabled={!canProceed()}
+                  className="flex items-center space-x-2 bg-[#2a9fd8] hover:bg-[#77d4fc] text-white hover:text-black px-6 py-2 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span>Next</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              ) : (
+                <button
+                  onClick={handleSubmit}
+                  disabled={!canProceed() || isSubmitting}
+                  className="flex items-center space-x-2 bg-[#2a9fd8] hover:bg-[#77d4fc] text-white hover:text-black px-6 py-2 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <span>Creating your profile...</span>
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle className="w-4 h-4" />
+                      <span>Complete Setup</span>
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
