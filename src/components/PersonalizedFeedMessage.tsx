@@ -30,18 +30,6 @@ const PersonalizedFeedMessage: React.FC = () => {
               <span className="text-[#77d4fc] font-medium">Your fan match:</span> {user.persona.tvTwin}
             </p>
           </div>
-          
-          {/* Genre tags */}
-          <div className="flex flex-wrap gap-1">
-            {user.persona.tags.map((tag, index) => (
-              <span
-                key={index}
-                className="bg-[#77d4fc]/20 text-[#77d4fc] px-2 py-0.5 rounded-full text-xs font-medium"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </div>

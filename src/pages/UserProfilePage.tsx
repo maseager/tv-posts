@@ -186,6 +186,23 @@ const UserProfilePage: React.FC = () => {
                 ))}
               </div>
             </div>
+            
+            {/* User's AI-generated tags (only show for current user) */}
+            {userProfile.username === 'Demo' && (
+              <div className="mt-4">
+                <h3 className="text-sm font-medium text-gray-400 mb-2">AI-Generated Profile Tags</h3>
+                <div className="flex flex-wrap gap-2">
+                  {['Thriller', 'Anti-heroes', 'Plot Twists'].map((tag, index) => (
+                    <span
+                      key={index}
+                      className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-medium border border-purple-500/30"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

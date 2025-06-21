@@ -28,6 +28,17 @@ export interface PostData {
 
 // User profiles data
 const userProfiles: Record<string, UserProfile> = {
+  'demo': {
+    username: 'Demo',
+    avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
+    bio: 'Demo user profile showcasing AI-generated preferences and personalized content recommendations.',
+    isAI: false,
+    followers: 1234,
+    following: 567,
+    totalPosts: 89,
+    favoriteGenres: ['Drama', 'Sci-Fi', 'Thriller'],
+    joinedDate: 'January 2024'
+  },
   'eleven': {
     username: 'Eleven',
     avatar: '/eleven-avatar.png',
