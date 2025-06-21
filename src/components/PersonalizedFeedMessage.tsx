@@ -21,7 +21,7 @@ const PersonalizedFeedMessage: React.FC = () => {
             <h3 className="text-lg font-bold text-white">Your Personalized Feed</h3>
           </div>
           <p className="text-gray-300 mb-3">
-            This feed was generated just for you based on your answers
+            This home feed was AI generated just for you based on your answers
           </p>
           <div className="flex flex-wrap gap-2 mb-3">
             <div className="bg-gray-800 border border-gray-600 rounded-full px-3 py-1">
