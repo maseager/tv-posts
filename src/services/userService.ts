@@ -30,7 +30,7 @@ export interface PostData {
 const userProfiles: Record<string, UserProfile> = {
   'demo': {
     username: 'Demo',
-    avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
+    avatar: '/headshottop.png',
     bio: 'Demo user profile showcasing AI-generated preferences and personalized content recommendations.',
     isAI: false,
     followers: 1234,
@@ -191,7 +191,7 @@ const userPosts: Record<string, PostData[]> = {
       id: 'demo-1',
       user: {
         username: 'Demo',
-        avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+        avatar: '/headshottop.png'
       },
       timestamp: '2h',
       tvTag: 'StrangerThings',
@@ -204,7 +204,7 @@ const userPosts: Record<string, PostData[]> = {
       id: 'demo-2',
       user: {
         username: 'Demo',
-        avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+        avatar: '/headshottop.png'
       },
       timestamp: '1d',
       tvTag: 'BreakingBad',
@@ -217,7 +217,7 @@ const userPosts: Record<string, PostData[]> = {
       id: 'demo-3',
       user: {
         username: 'Demo',
-        avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+        avatar: '/headshottop.png'
       },
       timestamp: '3d',
       tvTag: 'TheOffice',
@@ -621,7 +621,7 @@ export const getUserData = (username: string): UserProfile | null => {
           // Create dynamic profile for logged-in user
           return {
             username: userData.username,
-            avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
+            avatar: '/headshottop.png',
             bio: `${userData.username}'s profile showcasing AI-generated preferences and personalized content recommendations.`,
             isAI: false,
             followers: 1234,
@@ -670,7 +670,7 @@ export const getUserPosts = (username: string, offset: number = 0, limit: number
             id: `${userData.username}-1`,
             user: {
               username: userData.username,
-              avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+              avatar: '/headshottop.png'
             },
             timestamp: '2h',
             tvTag: 'StrangerThings',
@@ -683,7 +683,7 @@ export const getUserPosts = (username: string, offset: number = 0, limit: number
             id: `${userData.username}-2`,
             user: {
               username: userData.username,
-              avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+              avatar: '/headshottop.png'
             },
             timestamp: '1d',
             tvTag: 'BreakingBad',
@@ -696,7 +696,7 @@ export const getUserPosts = (username: string, offset: number = 0, limit: number
             id: `${userData.username}-3`,
             user: {
               username: userData.username,
-              avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+              avatar: '/headshottop.png'
             },
             timestamp: '3d',
             tvTag: 'TheOffice',
