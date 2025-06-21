@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Users, AlertCircle, UserPlus } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 import Post from '../components/Post';
 import { getUserData, getUserPosts, UserProfile, PostData } from '../services/userService';
 
 const UserProfilePage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
+  const { user: currentUser } = useAuth();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [posts, setPosts] = useState<PostData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -80,6 +82,10 @@ const UserProfilePage: React.FC = () => {
     setTimeout(() => setShowLoginPrompt(false), 3000);
   };
 
+  // Check if this is the current user's own profile
+  const isOwnProfile = currentUser && userProfile && 
+    currentUser.username.toLowerCase().replace(/\s+/g, '-') === 
+    userProfile.username.toLowerCase().replace(/\s+/g, '-');
   if (loading) {
     return (
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -137,18 +143,21 @@ const UserProfilePage: React.FC = () => {
                 </p>
               </div>
               
-              {/* Follow Button */}
+              {/* Follow Button and Stats */}
               <div className="flex flex-col items-center sm:items-end">
-                <button
-                  onClick={handleFollowClick}
-                  className="flex items-center space-x-2 bg-[#2a9fd8] hover:bg-[#77d4fc] text-white hover:text-black px-6 py-2 rounded-lg font-medium transition-all duration-200 transform hover:scale-105"
-                >
-                  <UserPlus className="w-5 h-5" />
-                  <span>Follow</span>
-                </button>
+                {/* Only show follow button if not own profile */}
+                {!isOwnProfile && (
+                  <button
+                    onClick={handleFollowClick}
+                    className="flex items-center space-x-2 bg-[#2a9fd8] hover:bg-[#77d4fc] text-white hover:text-black px-6 py-2 rounded-lg font-medium transition-all duration-200 transform hover:scale-105"
+                  >
+                    <UserPlus className="w-5 h-5" />
+                    <span>Follow</span>
+                  </button>
+                )}
                 
                 {/* Follower/Following counts */}
-                <div className="flex items-center space-x-4 mt-3 text-gray-400">
+                <div className={`flex items-center space-x-4 text-gray-400 ${isOwnProfile ? 'mt-0' : 'mt-3'}`}>
                   <div className="text-center">
                     <div className="font-bold text-white">{userProfile.followers.toLocaleString()}</div>
                     <div className="text-xs">Followers</div>
@@ -157,7 +166,7 @@ const UserProfilePage: React.FC = () => {
                     <div className="font-bold text-white">{userProfile.following.toLocaleString()}</div>
                     <div className="text-xs">Following</div>
                   </div>
-                </div>
+                  </div>
               </div>
             </div>
             
