@@ -58,10 +58,13 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
             {/* Auth Section */}
             {isAuthenticated ? (
               <div className="flex items-center space-x-3">
-                <div className="text-right">
-                  <div className="text-sm font-medium text-white">{user?.username}</div>
-                  <div className="text-xs text-gray-400">{user?.persona.tvTwin}</div>
+                {/* Text-based avatar */}
+                <div className="w-8 h-8 bg-gradient-to-br from-[#2a9fd8] to-[#77d4fc] rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">
+                    {user?.username?.charAt(0).toUpperCase()}
+                  </span>
                 </div>
+                <div className="text-sm font-medium text-white">{user?.username}</div>
                 <button
                   onClick={logout}
                   className="p-2 text-gray-300 hover:text-red-400 transition-colors"
