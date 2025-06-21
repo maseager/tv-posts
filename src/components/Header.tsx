@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Sun, Moon, User, LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import OnboardingWizard from './OnboardingWizard';
 import { SearchWithTypeahead } from './SearchWithTypeahead';
 import type { SearchSuggestion } from '../services/openai';
 import type { SearchResult } from '../services/searchService';
@@ -14,7 +13,6 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
   const { user, isAuthenticated, logout } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
-  const [showOnboarding, setShowOnboarding] = useState(false);
 
   const handleSuggestionSelect = (suggestion: SearchSuggestion) => {
     console.log('Selected suggestion:', suggestion);
@@ -24,6 +22,11 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
   const handleSearchResults = (results: SearchResult[]) => {
     console.log('Search results:', results);
     // Handle search results logic here
+  };
+
+  const handleRegisterClick = () => {
+    // Dispatch custom event to trigger onboarding
+    window.dispatchEvent(new CustomEvent('openOnboarding'));
   };
 
   return (
@@ -73,7 +76,7 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
                   Login
                 </button>
                 <button 
-                  onClick={() => setShowOnboarding(true)}
+                  onClick={handleRegisterClick}
                   className="px-4 py-1.5 text-sm bg-[#2a9fd8] hover:bg-[#77d4fc] text-white hover:text-black rounded-md font-medium transition-colors"
                 >
                   Register
@@ -92,12 +95,6 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
             </button>
           </div>
         </div>
-        
-        {/* Onboarding Wizard */}
-        <OnboardingWizard 
-          isOpen={showOnboarding} 
-          onClose={() => setShowOnboarding(false)} 
-        />
       </div>
     </header>
   );
