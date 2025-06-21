@@ -6,8 +6,6 @@ const PersonalizedFeedMessage: React.FC = () => {
   const { user } = useAuth();
   const [showTooltip, setShowTooltip] = React.useState(false);
 
-  if (!user) return null;
-
   // Close tooltip when clicking outside
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

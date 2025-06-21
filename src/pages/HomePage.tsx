@@ -26,7 +26,7 @@ const HomePage: React.FC = () => {
         
         {/* Main Content */}
         <div className={`${isAuthenticated ? 'lg:col-span-2 order-1 lg:order-2' : 'lg:col-span-3'} pt-8`}>
-          <PersonalizedFeedMessage />
+          {isAuthenticated && <PersonalizedFeedMessage />}
           <PostFeed />
         </div>
         
