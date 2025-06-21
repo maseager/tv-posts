@@ -162,17 +162,28 @@ const UserProfilePage: React.FC = () => {
             </div>
             
             {/* Additional Stats */}
-            <div className="flex flex-wrap gap-4 text-sm text-gray-400">
+            <div className="flex flex-wrap gap-4 text-sm text-gray-400 mb-4">
               <div className="flex items-center space-x-1">
                 <span className="font-medium text-white">{userProfile.totalPosts}</span>
                 <span>Posts</span>
               </div>
               <div className="flex items-center space-x-1">
-                <span className="font-medium text-white">{userProfile.totalLikes.toLocaleString()}</span>
-                <span>Likes Received</span>
-              </div>
-              <div className="flex items-center space-x-1">
                 <span>Joined {userProfile.joinedDate}</span>
+              </div>
+            </div>
+            
+            {/* Favorite Genres */}
+            <div>
+              <h3 className="text-sm font-medium text-gray-400 mb-2">Favorite Genres</h3>
+              <div className="flex flex-wrap gap-2">
+                {userProfile.favoriteGenres.map((genre) => (
+                  <span
+                    key={genre}
+                    className="bg-[#77d4fc]/20 text-[#77d4fc] px-3 py-1 rounded-full text-sm font-medium"
+                  >
+                    {genre}
+                  </span>
+                ))}
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@ export interface UserProfile {
   followers: number;
   following: number;
   totalPosts: number;
-  totalLikes: number;
+  favoriteGenres: string[];
   joinedDate: string;
 }
 
@@ -36,7 +36,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 125430,
     following: 23,
     totalPosts: 47,
-    totalLikes: 89234,
+    favoriteGenres: ['Sci-Fi', 'Horror', 'Supernatural'],
     joinedDate: 'July 2022'
   },
   'player-456': {
@@ -47,7 +47,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 98765,
     following: 12,
     totalPosts: 34,
-    totalLikes: 67890,
+    favoriteGenres: ['Thriller', 'Drama', 'Psychological'],
     joinedDate: 'September 2021'
   },
   'michael-scott': {
@@ -58,7 +58,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 156789,
     following: 45,
     totalPosts: 89,
-    totalLikes: 234567,
+    favoriteGenres: ['Comedy', 'Mockumentary', 'Workplace'],
     joinedDate: 'March 2020'
   },
   'walter-white': {
@@ -69,7 +69,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 187654,
     following: 8,
     totalPosts: 56,
-    totalLikes: 145678,
+    favoriteGenres: ['Crime', 'Drama', 'Thriller'],
     joinedDate: 'January 2021'
   },
   'dustin': {
@@ -80,7 +80,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 76543,
     following: 34,
     totalPosts: 67,
-    totalLikes: 98765,
+    favoriteGenres: ['Sci-Fi', 'Adventure', 'Mystery'],
     joinedDate: 'August 2022'
   },
   'bingewatcher': {
@@ -91,7 +91,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 2345,
     following: 567,
     totalPosts: 123,
-    totalLikes: 8901,
+    favoriteGenres: ['Drama', 'Sci-Fi', 'Fantasy'],
     joinedDate: 'November 2023'
   },
   'seaotter0111': {
@@ -102,7 +102,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 1234,
     following: 890,
     totalPosts: 78,
-    totalLikes: 4567,
+    favoriteGenres: ['Comedy', 'Romance', 'Sitcom'],
     joinedDate: 'June 2023'
   },
   'tvfanatic': {
@@ -113,7 +113,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 3456,
     following: 234,
     totalPosts: 156,
-    totalLikes: 12345,
+    favoriteGenres: ['Drama', 'Thriller', 'Mystery'],
     joinedDate: 'February 2023'
   },
   'couchpotato': {
@@ -124,7 +124,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 2789,
     following: 345,
     totalPosts: 89,
-    totalLikes: 6789,
+    favoriteGenres: ['Crime', 'Drama', 'Character Study'],
     joinedDate: 'April 2023'
   },
   'hawkinsexplorer': {
@@ -135,7 +135,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 1876,
     following: 432,
     totalPosts: 67,
-    totalLikes: 5432,
+    favoriteGenres: ['Sci-Fi', 'Horror', 'Supernatural'],
     joinedDate: 'May 2023'
   },
   'dundermifflin': {
@@ -146,7 +146,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 4321,
     following: 123,
     totalPosts: 234,
-    totalLikes: 15678,
+    favoriteGenres: ['Comedy', 'Mockumentary', 'Workplace'],
     joinedDate: 'January 2023'
   },
   'centralPerkFan': {
@@ -157,7 +157,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 3210,
     following: 654,
     totalPosts: 145,
-    totalLikes: 9876,
+    favoriteGenres: ['Sitcom', 'Comedy', 'Romance'],
     joinedDate: 'March 2023'
   },
   'slippinJimmy': {
@@ -168,7 +168,7 @@ const userProfiles: Record<string, UserProfile> = {
     followers: 2654,
     following: 321,
     totalPosts: 98,
-    totalLikes: 7654,
+    favoriteGenres: ['Legal Drama', 'Crime', 'Character Study'],
     joinedDate: 'September 2022'
   }
 };
