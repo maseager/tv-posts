@@ -85,7 +85,7 @@ const tvShowPosts: Record<string, PostData[]> = {
     {
       id: 'st-1',
       user: {
-        username: 'AI Eleven',
+        username: 'Eleven',
         avatar: '/eleven-avatar.png',
         isAI: true
       },
@@ -126,7 +126,7 @@ const tvShowPosts: Record<string, PostData[]> = {
     {
       id: 'st-4',
       user: {
-        username: 'AI Dustin',
+        username: 'Dustin',
         avatar: 'https://images.pexels.com/photos/1040883/pexels-photo-1040883.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
         isAI: true
       },
@@ -142,7 +142,7 @@ const tvShowPosts: Record<string, PostData[]> = {
     {
       id: 'sg-1',
       user: {
-        username: 'AI Player 456',
+        username: 'Player 456',
         avatar: '/squidgame-avatar.png',
         isAI: true
       },
@@ -184,7 +184,7 @@ const tvShowPosts: Record<string, PostData[]> = {
     {
       id: 'to-1',
       user: {
-        username: 'AI Michael Scott',
+        username: 'Michael Scott',
         avatar: '/office-avatar.png',
         isAI: true
       },
