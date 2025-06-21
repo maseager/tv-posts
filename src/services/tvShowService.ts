@@ -33,7 +33,7 @@ const tvShows: TVShow[] = [
     id: '1',
     title: 'Stranger Things',
     slug: 'stranger-things',
-    poster: 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop',
+    poster: '/stranger-things-poster.png',
     description: 'When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.',
     year: '2016-2025',
     rating: '8.7',
