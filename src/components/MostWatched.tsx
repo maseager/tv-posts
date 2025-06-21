@@ -52,7 +52,12 @@ const MostWatched: React.FC = () => {
                 className="w-8 h-8 rounded-full object-cover"
               />
               <div>
-                <h3 className="text-white font-medium text-sm hover:text-[#77d4fc] transition-colors duration-200 cursor-pointer">{show.name}</h3>
+                <Link 
+                  to={`/tv/${show.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="text-white font-medium text-sm hover:text-[#77d4fc] transition-colors duration-200 cursor-pointer"
+                >
+                  {show.name}
+                </Link>
                 <p className="text-gray-400 text-xs">{show.platform}</p>
               </div>
             </div>
@@ -61,12 +66,7 @@ const MostWatched: React.FC = () => {
                 {show.viewers}
               </div>
               <div className="text-[10px] text-gray-500">
-              <Link 
-                to={`/tv/${show.name.toLowerCase().replace(/\s+/g, '-')}`}
-                className="text-white font-medium text-sm hover:text-[#77d4fc] transition-colors duration-200 cursor-pointer"
-              >
-                {show.name}
-              </Link>
+                viewers
               </div>
             </div>
           </div>
