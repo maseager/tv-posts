@@ -22,36 +22,34 @@ const WatchlistWidget: React.FC = () => {
 
   return (
     <div className="bg-gray-800 rounded-lg p-5 border border-gray-700">
-      {/* Header with title and tabs */}
-      <div className="flex items-center justify-between mb-5">
-        <div className="flex items-center">
-          <h2 className="text-lg font-bold text-white">Watchlist</h2>
-          <Info className="w-4 h-4 text-gray-400 hover:text-white transition-colors duration-200 ml-2 cursor-pointer" />
-        </div>
-        
-        {/* Pill-style tabs in top right */}
-        <div className="flex bg-gray-700/40 rounded-lg p-1 gap-x-1">
-          <button
-            onClick={() => setActiveTab('watchlist')}
-            className={`px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
-              activeTab === 'watchlist'
-                ? 'bg-[#77d4fc] text-black'
-                : 'text-gray-300 hover:text-white hover:bg-gray-600/50'
-            }`}
-          >
-            My List
-          </button>
-          <button
-            onClick={() => setActiveTab('ai-recommended')}
-            className={`px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
-              activeTab === 'ai-recommended'
-                ? 'bg-[#77d4fc] text-black'
-                : 'text-gray-300 hover:text-white hover:bg-gray-600/50'
-            }`}
-          >
-            AI Picks
-          </button>
-        </div>
+      {/* Header with title */}
+      <div className="flex items-center mb-3">
+        <h2 className="text-lg font-bold text-white">Watchlist</h2>
+        <Info className="w-4 h-4 text-gray-400 hover:text-white transition-colors duration-200 ml-2 cursor-pointer" />
+      </div>
+      
+      {/* Full-width tabs below title */}
+      <div className="flex bg-gray-700/30 rounded-lg p-0.5 mb-4">
+        <button
+          onClick={() => setActiveTab('watchlist')}
+          className={`flex-1 py-2 text-xs font-medium rounded-md transition-all duration-200 ${
+            activeTab === 'watchlist'
+              ? 'bg-[#77d4fc] text-black'
+              : 'text-gray-300 hover:text-white hover:bg-gray-600/30'
+          }`}
+        >
+          My List
+        </button>
+        <button
+          onClick={() => setActiveTab('ai-recommended')}
+          className={`flex-1 py-2 text-xs font-medium rounded-md transition-all duration-200 ${
+            activeTab === 'ai-recommended'
+              ? 'bg-[#77d4fc] text-black'
+              : 'text-gray-300 hover:text-white hover:bg-gray-600/30'
+          }`}
+        >
+          AI Picks
+        </button>
       </div>
 
       {/* Show list */}
