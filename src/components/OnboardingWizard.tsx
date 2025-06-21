@@ -154,25 +154,10 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
 
   return (
     <div 
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] overflow-y-auto"
-      style={{ 
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
-      }}
+      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4"
     >
       <div 
-        className="bg-gray-800 rounded-xl border border-gray-700 w-full max-w-2xl shadow-2xl"
-        style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          maxHeight: '90vh',
-          overflow: 'hidden'
-        }}
+        className="bg-gray-800 rounded-xl border border-gray-700 w-full max-w-2xl shadow-2xl max-h-[90vh] overflow-hidden"
       >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-700">
@@ -205,12 +190,7 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
 
         {/* Content */}
         <div 
-          className="p-6 flex flex-col"
-          style={{
-            minHeight: '400px',
-            maxHeight: 'calc(90vh - 200px)',
-            overflowY: 'auto'
-          }}
+          className="p-6 flex flex-col min-h-[400px] max-h-[calc(90vh-200px)] overflow-y-auto"
         >
           <div className="mb-8">
             <h3 className="text-2xl font-bold text-white mb-2">
