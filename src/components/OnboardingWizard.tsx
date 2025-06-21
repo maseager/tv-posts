@@ -139,8 +139,8 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-gray-800 rounded-xl border border-gray-700 w-full max-w-2xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-gray-800 rounded-xl border border-gray-700 w-full max-w-2xl max-h-[90vh] my-8 mx-auto overflow-hidden shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-700">
           <div className="flex items-center space-x-3">
@@ -171,7 +171,7 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
         </div>
 
         {/* Content */}
-        <div className="p-6 min-h-[400px] flex flex-col">
+        <div className="p-6 min-h-[400px] max-h-[60vh] overflow-y-auto flex flex-col">
           <div className="mb-8">
             <h3 className="text-2xl font-bold text-white mb-2">
               {currentStepData.title}
@@ -181,7 +181,7 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
             </p>
           </div>
 
-          <div className="flex-1">
+          <div className="flex-1 overflow-y-auto">
             {currentStepData.type === 'textarea' && (
               <textarea
                 value={answers[currentStepData.field!]}
@@ -266,7 +266,7 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-700">
+          <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-700 bg-gray-800 sticky bottom-0">
             <button
               onClick={handleBack}
               disabled={currentStep === 0}
