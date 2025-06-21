@@ -49,7 +49,7 @@ const PersonalizedFeedMessage: React.FC = () => {
               {showTooltip && (
                 <div className="absolute top-6 left-0 z-50 w-72 bg-gray-900 border border-gray-600 rounded-lg p-3 shadow-lg animate-fade-in">
                   <div className="text-sm text-gray-300 leading-relaxed">
-                    This feed was AI-generated just for you based on your onboarding answers.
+                    This home feed was AI-generated just for you based on your onboarding answers.
                   </div>
                   {/* Arrow pointing up */}
                   <div className="absolute -top-1 left-3 w-2 h-2 bg-gray-900 border-l border-t border-gray-600 transform rotate-45"></div>
