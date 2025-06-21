@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Sun, Moon, User, LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { SearchWithTypeahead } from './SearchWithTypeahead';
@@ -64,7 +65,12 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
                     {user?.username?.charAt(0).toUpperCase()}
                   </span>
                 </div>
-                <div className="text-sm font-medium text-white">{user?.username}</div>
+                <Link 
+                  to={`/user/${user?.username?.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="text-sm font-medium text-white hover:text-[#77d4fc] transition-colors cursor-pointer"
+                >
+                  {user?.username}
+                </Link>
                 <button
                   onClick={logout}
                   className="p-2 text-gray-300 hover:text-red-400 transition-colors"

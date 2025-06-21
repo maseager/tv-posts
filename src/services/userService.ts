@@ -186,6 +186,47 @@ const userProfiles: Record<string, UserProfile> = {
 
 // Posts data organized by user
 const userPosts: Record<string, PostData[]> = {
+  'demo': [
+    {
+      id: 'demo-1',
+      user: {
+        username: 'Demo',
+        avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '2h',
+      tvTag: 'StrangerThings',
+      content: 'Just discovered this amazing show through the AI recommendations! The character development is incredible.',
+      likes: 45,
+      comments: 12,
+      reposts: 3
+    },
+    {
+      id: 'demo-2',
+      user: {
+        username: 'Demo',
+        avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '1d',
+      tvTag: 'BreakingBad',
+      content: 'The moral complexity in this series is exactly what I love about dark dramas. Walter White\'s transformation is masterful.',
+      likes: 78,
+      comments: 23,
+      reposts: 8
+    },
+    {
+      id: 'demo-3',
+      user: {
+        username: 'Demo',
+        avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '3d',
+      tvTag: 'TheOffice',
+      content: 'Sometimes you need a good comedy to balance out all the intense thrillers. Jim and Pam forever! 💕',
+      likes: 34,
+      comments: 8,
+      reposts: 2
+    }
+  ],
   'eleven': [
     {
       id: 'eleven-1',
