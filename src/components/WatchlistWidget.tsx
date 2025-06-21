@@ -21,81 +21,93 @@ const WatchlistWidget: React.FC = () => {
   const currentShows = activeTab === 'watchlist' ? user.watchlist : aiRecommendedShows;
 
   return (
-    <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-      <div className="flex items-center mb-4">
-        <h2 className="text-lg font-bold text-white">Watchlist</h2>
-        <Info className="w-4 h-4 text-gray-400 hover:text-white transition-colors duration-200 ml-2 cursor-pointer" />
+    <div className="bg-gray-800 rounded-lg p-5 border border-gray-700">
+      {/* Header with title and tabs */}
+      <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center">
+          <h2 className="text-lg font-bold text-white">Watchlist</h2>
+          <Info className="w-4 h-4 text-gray-400 hover:text-white transition-colors duration-200 ml-2 cursor-pointer" />
+        </div>
+        
+        {/* Pill-style tabs in top right */}
+        <div className="flex bg-gray-700/50 rounded-full p-0.5">
+          <button
+            onClick={() => setActiveTab('watchlist')}
+            className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
+              activeTab === 'watchlist'
+                ? 'bg-[#77d4fc] text-black'
+                : 'text-gray-400 hover:text-gray-200'
+            }`}
+          >
+            My List
+          </button>
+          <button
+            onClick={() => setActiveTab('ai-recommended')}
+            className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
+              activeTab === 'ai-recommended'
+                ? 'bg-[#77d4fc] text-black'
+                : 'text-gray-400 hover:text-gray-200'
+            }`}
+          >
+            AI Picks
+          </button>
+        </div>
       </div>
 
-      {/* Tabs */}
-      <div className="flex mb-4 bg-gray-700 rounded-lg p-1">
-        <button
-          onClick={() => setActiveTab('watchlist')}
-          className={`flex-1 px-3 py-2 text-xs font-medium rounded-md transition-all duration-200 ${
-            activeTab === 'watchlist'
-              ? 'bg-gray-600 text-white'
-              : 'text-gray-400 hover:text-gray-200'
-          }`}
-        >
-          Watchlist
-        </button>
-        <button
-          onClick={() => setActiveTab('ai-recommended')}
-          className={`flex-1 px-3 py-2 text-xs font-medium rounded-md transition-all duration-200 ${
-            activeTab === 'ai-recommended'
-              ? 'bg-gray-600 text-white'
-              : 'text-gray-400 hover:text-gray-200'
-          }`}
-        >
-          AI-Recommended
-        </button>
-      </div>
-
-      <div className="space-y-3">
+      {/* Show list */}
+      <div className="space-y-2">
         {currentShows.map((show) => (
-          <div key={show.id} className="flex items-center justify-between group">
-            <div className="flex items-center space-x-3 flex-1">
+          <div 
+            key={show.id} 
+            className="flex items-center justify-between py-2 px-1 rounded-md hover:bg-gray-700/30 transition-colors duration-150 group"
+          >
+            <div className="flex items-center space-x-3 flex-1 min-w-0">
               {show.name === 'Stranger Things' ? (
                 <img
                   src="/eleven-avatar.png"
                   alt="Stranger Things"
-                  className="w-8 h-8 rounded-full object-cover flex-shrink-0"
+                  className="w-7 h-7 rounded-full object-cover flex-shrink-0"
                 />
               ) : (
-                <div className="w-8 h-8 bg-gradient-to-br from-[#2a9fd8] to-[#77d4fc] rounded-full flex items-center justify-center flex-shrink-0">
-                  <Plus className="w-4 h-4 text-white" />
+                <div className="w-7 h-7 bg-gradient-to-br from-[#2a9fd8] to-[#77d4fc] rounded-full flex items-center justify-center flex-shrink-0">
+                  <Plus className="w-3 h-3 text-white" />
                 </div>
               )}
               <div className="min-w-0 flex-1">
-                <h3 className="text-white font-medium text-xs hover:text-[#77d4fc] transition-colors duration-200 cursor-pointer truncate">
+                <h3 className="text-white font-medium text-sm hover:text-[#77d4fc] transition-colors duration-200 cursor-pointer truncate">
                   {show.name}
                 </h3>
-                <p className="text-gray-400 text-[10px]">{show.platform}</p>
+                <p className="text-gray-500 text-xs">{show.platform}</p>
               </div>
             </div>
+            
+            {/* Action button - appears on hover */}
             {activeTab === 'watchlist' ? (
               <button
                 onClick={() => removeFromWatchlist(show.id)}
-                className="opacity-0 group-hover:opacity-100 p-1 text-gray-400 hover:text-red-400 transition-all duration-200 flex-shrink-0"
+                className="opacity-0 group-hover:opacity-100 p-1.5 text-gray-400 hover:text-red-400 transition-all duration-200 flex-shrink-0"
                 title="Remove from watchlist"
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash2 className="w-3.5 h-3.5" />
               </button>
             ) : (
               <button
-                className="opacity-0 group-hover:opacity-100 p-1 text-gray-400 hover:text-[#77d4fc] transition-all duration-200 flex-shrink-0"
+                className="opacity-0 group-hover:opacity-100 p-1.5 text-gray-400 hover:text-[#77d4fc] transition-all duration-200 flex-shrink-0"
                 title="Add to watchlist"
               >
-                <Plus className="w-4 h-4" />
+                <Plus className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
         ))}
       </div>
 
-      <button className="w-full mt-5 text-gray-400 hover:text-white transition-colors text-xs">
-        {activeTab === 'watchlist' ? 'View all watchlist' : 'View all recommendations'}
-      </button>
+      {/* Subtle divider */}
+      <div className="border-t border-gray-700/50 mt-4 pt-4">
+        <button className="text-xs text-gray-400 hover:text-[#77d4fc] transition-colors duration-200 font-medium">
+          View all →
+        </button>
+      </div>
     </div>
   );
 };
