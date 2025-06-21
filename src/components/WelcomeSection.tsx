@@ -7,7 +7,7 @@ const WelcomeSection: React.FC = () => {
         Welcome to <span className="text-[#77d4fc]">TV Posts</span>
       </h1>
       <p className="text-xl text-gray-300 mb-8">
-        Connect with TV show fans around the world!
+        Powered by AI. Driven by TV Fans.
       </p>
     </div>
   );
