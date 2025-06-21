@@ -36,7 +36,7 @@ const Post: React.FC<PostProps> = ({
       {/* Post Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center space-x-3">
-          <a href={`/user/${user.username}`} className="flex-shrink-0">
+          <a href={`/user/${user.username.toLowerCase().replace(/\s+/g, '-')}`} className="flex-shrink-0">
             <img
               src={user.avatar}
               alt={user.username}
@@ -46,7 +46,7 @@ const Post: React.FC<PostProps> = ({
             />
           </a>
           <div>
-            <a href={`/user/${user.username}`}>
+            <a href={`/user/${user.username.toLowerCase().replace(/\s+/g, '-')}`}>
               <h3 className={`font-medium hover:text-[#77d4fc] transition-colors duration-200 cursor-pointer ${
                 user.isAI ? 'text-purple-400' : 'text-white'
               }`}>
