@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Sun, Moon, User } from 'lucide-react';
+import { Sun, Moon, User, LogOut } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
+import OnboardingWizard from './OnboardingWizard';
 import { SearchWithTypeahead } from './SearchWithTypeahead';
 import type { SearchSuggestion } from '../services/openai';
 import type { SearchResult } from '../services/searchService';
@@ -10,7 +12,9 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
+  const { user, isAuthenticated, logout } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   const handleSuggestionSelect = (suggestion: SearchSuggestion) => {
     console.log('Selected suggestion:', suggestion);
@@ -48,15 +52,34 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
 
           {/* Right Icons */}
           <div className="flex items-center space-x-4">
-            {/* Auth Buttons */}
-            <div className="flex items-center space-x-2">
-              <button className="px-4 py-1.5 text-sm text-gray-300 hover:text-[#77d4fc] border border-gray-600 hover:border-gray-500 rounded-md font-medium transition-colors">
-                Login
-              </button>
-              <button className="px-4 py-1.5 text-sm bg-[#2a9fd8] hover:bg-[#77d4fc] text-white hover:text-black rounded-md font-medium transition-colors">
-                Register
-              </button>
-            </div>
+            {/* Auth Section */}
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-3">
+                <div className="text-right">
+                  <div className="text-sm font-medium text-white">{user?.username}</div>
+                  <div className="text-xs text-gray-400">{user?.persona.tvTwin}</div>
+                </div>
+                <button
+                  onClick={logout}
+                  className="p-2 text-gray-300 hover:text-red-400 transition-colors"
+                  title="Logout"
+                >
+                  <LogOut className="w-5 h-5" />
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-2">
+                <button className="px-4 py-1.5 text-sm text-gray-300 hover:text-[#77d4fc] border border-gray-600 hover:border-gray-500 rounded-md font-medium transition-colors">
+                  Login
+                </button>
+                <button 
+                  onClick={() => setShowOnboarding(true)}
+                  className="px-4 py-1.5 text-sm bg-[#2a9fd8] hover:bg-[#77d4fc] text-white hover:text-black rounded-md font-medium transition-colors"
+                >
+                  Register
+                </button>
+              </div>
+            )}
             
             <button
               onClick={toggleDarkMode}
@@ -69,6 +92,12 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
             </button>
           </div>
         </div>
+        
+        {/* Onboarding Wizard */}
+        <OnboardingWizard 
+          isOpen={showOnboarding} 
+          onClose={() => setShowOnboarding(false)} 
+        />
       </div>
     </header>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import TVShowPage from './pages/TVShowPage';
@@ -13,15 +14,17 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
-      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-      
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/tv/:showSlug" element={<TVShowPage />} />
-        <Route path="/user/:username" element={<UserProfilePage />} />
-      </Routes>
-    </div>
+    <AuthProvider>
+      <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
+        <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+        
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/tv/:showSlug" element={<TVShowPage />} />
+          <Route path="/user/:username" element={<UserProfilePage />} />
+        </Routes>
+      </div>
+    </AuthProvider>
   );
 }
 
