@@ -30,23 +30,23 @@ const WatchlistWidget: React.FC = () => {
         </div>
         
         {/* Pill-style tabs in top right */}
-        <div className="flex bg-gray-700/50 rounded-full p-0.5">
+        <div className="flex bg-gray-700/40 rounded-lg p-1 gap-x-1">
           <button
             onClick={() => setActiveTab('watchlist')}
-            className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
+            className={`px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
               activeTab === 'watchlist'
                 ? 'bg-[#77d4fc] text-black'
-                : 'text-gray-400 hover:text-gray-200'
+                : 'text-gray-300 hover:text-white hover:bg-gray-600/50'
             }`}
           >
             My List
           </button>
           <button
             onClick={() => setActiveTab('ai-recommended')}
-            className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
+            className={`px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
               activeTab === 'ai-recommended'
                 ? 'bg-[#77d4fc] text-black'
-                : 'text-gray-400 hover:text-gray-200'
+                : 'text-gray-300 hover:text-white hover:bg-gray-600/50'
             }`}
           >
             AI Picks
