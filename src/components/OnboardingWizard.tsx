@@ -153,6 +153,7 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
   if (!isOpen) return null;
 
   return (
+    <>
     {/* Modal Backdrop */}
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
       {/* Modal Container */}
@@ -326,6 +327,7 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
           </div>
         </div>
     </div>
+    </>
   );
 };
 
