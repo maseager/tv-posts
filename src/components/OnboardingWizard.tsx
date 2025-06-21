@@ -154,11 +154,11 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
 
   return (
     <div 
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex justify-center p-4 pt-16"
+      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4"
     >
-      <div className="flex flex-col justify-start h-full w-full max-w-2xl">
+      <div className="flex items-center justify-center h-full w-full max-w-2xl">
         <div 
-          className="bg-gray-800 rounded-xl border border-gray-700 w-full shadow-2xl max-h-[85vh] overflow-hidden mt-8"
+          className="bg-gray-800 rounded-xl border border-gray-700 w-full shadow-2xl max-h-[85vh] overflow-hidden"
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-700">
