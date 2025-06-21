@@ -172,25 +172,10 @@ const UserProfilePage: React.FC = () => {
               </div>
             </div>
             
-            {/* Favorite Genres */}
-            <div>
-              <h3 className="text-sm font-medium text-gray-400 mb-2">Favorite Genres</h3>
-              <div className="flex flex-wrap gap-2">
-                {userProfile.favoriteGenres.map((genre) => (
-                  <span
-                    key={genre}
-                    className="bg-[#77d4fc]/20 text-[#77d4fc] px-3 py-1 rounded-full text-sm font-medium"
-                  >
-                    {genre}
-                  </span>
-                ))}
-              </div>
-            </div>
-            
-            {/* User's AI-generated tags (only show for current user) */}
+            {/* AI-Generated Profile Tags */}
             {userProfile && (
               <div className="mt-4">
-                <h3 className="text-sm font-medium text-gray-400 mb-2">AI-Generated Profile Tags</h3>
+                <h3 className="text-sm font-medium text-gray-400 mb-2">Favorite Genres (AI-generated)</h3>
                 <div className="flex flex-wrap gap-2">
                   {userProfile.favoriteGenres.slice(0, 3).map((tag, index) => (
                     <span
