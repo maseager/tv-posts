@@ -133,6 +133,18 @@ const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ isOpen, onClose }) 
 
     login(userData);
     setIsSubmitting(false);
+    
+    // Reset form for next use
+    setCurrentStep(0);
+    setAnswers({
+      emotionalMoment: '',
+      cliffhangerFeeling: '',
+      bestFriendCharacter: '',
+      email: '',
+      username: '',
+      password: ''
+    });
+    
     onClose();
   };
 

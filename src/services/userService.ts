@@ -608,6 +608,35 @@ const userPosts: Record<string, PostData[]> = {
 export const getUserData = (username: string): UserProfile | null => {
   const normalizedUsername = username.toLowerCase().replace(/\s+/g, '-');
   
+  // Handle dynamic demo user creation
+  if (normalizedUsername === 'demo' || !userProfiles[normalizedUsername]) {
+    // Check if this is a registered user's username
+    const savedUser = localStorage.getItem('tvposts_user');
+    if (savedUser) {
+      try {
+        const userData = JSON.parse(savedUser);
+        const userSlug = userData.username?.toLowerCase().replace(/\s+/g, '-');
+        
+        if (userSlug === normalizedUsername) {
+          // Create dynamic profile for logged-in user
+          return {
+            username: userData.username,
+            avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
+            bio: `${userData.username}'s profile showcasing AI-generated preferences and personalized content recommendations.`,
+            isAI: false,
+            followers: 1234,
+            following: 567,
+            totalPosts: 89,
+            favoriteGenres: userData.persona?.tags || ['Drama', 'Sci-Fi', 'Thriller'],
+            joinedDate: 'January 2024'
+          };
+        }
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+      }
+    }
+  }
+  
   // Create a mapping from normalized usernames to profiles
   const usernameMap: Record<string, UserProfile> = {};
   
@@ -626,6 +655,79 @@ export const getUserData = (username: string): UserProfile | null => {
 
 export const getUserPosts = (username: string, offset: number = 0, limit: number = 10): PostData[] => {
   const normalizedUsername = username.toLowerCase().replace(/\s+/g, '-');
+  
+  // Handle dynamic demo user posts
+  const savedUser = localStorage.getItem('tvposts_user');
+  if (savedUser) {
+    try {
+      const userData = JSON.parse(savedUser);
+      const userSlug = userData.username?.toLowerCase().replace(/\s+/g, '-');
+      
+      if (userSlug === normalizedUsername) {
+        // Create dynamic posts for logged-in user
+        const demoPosts: PostData[] = [
+          {
+            id: `${userData.username}-1`,
+            user: {
+              username: userData.username,
+              avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+            },
+            timestamp: '2h',
+            tvTag: 'StrangerThings',
+            content: 'Just discovered this amazing show through the AI recommendations! The character development is incredible.',
+            likes: 45,
+            comments: 12,
+            reposts: 3
+          },
+          {
+            id: `${userData.username}-2`,
+            user: {
+              username: userData.username,
+              avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+            },
+            timestamp: '1d',
+            tvTag: 'BreakingBad',
+            content: 'The moral complexity in this series is exactly what I love about dark dramas. Walter White\'s transformation is masterful.',
+            likes: 78,
+            comments: 23,
+            reposts: 8
+          },
+          {
+            id: `${userData.username}-3`,
+            user: {
+              username: userData.username,
+              avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+            },
+            timestamp: '3d',
+            tvTag: 'TheOffice',
+            content: 'Sometimes you need a good comedy to balance out all the intense thrillers. Jim and Pam forever! 💕',
+            likes: 34,
+            comments: 8,
+            reposts: 2
+          }
+        ];
+        
+        // Generate additional posts if needed
+        const totalPosts = [...demoPosts];
+        
+        while (totalPosts.length < offset + limit && demoPosts.length > 0) {
+          const additionalPosts = demoPosts.map((post, index) => ({
+            ...post,
+            id: `${post.id}-${Math.floor(totalPosts.length / demoPosts.length)}-${index}`,
+            timestamp: `${Math.floor(Math.random() * 24) + 1}h`,
+            likes: Math.floor(Math.random() * 500) + 50,
+            comments: Math.floor(Math.random() * 100) + 10,
+            reposts: Math.floor(Math.random() * 50) + 5
+          }));
+          totalPosts.push(...additionalPosts);
+        }
+        
+        return totalPosts.slice(offset, offset + limit);
+      }
+    } catch (error) {
+      console.error('Error parsing user data:', error);
+    }
+  }
   
   // Create a mapping from normalized usernames to post arrays
   const postsMap: Record<string, PostData[]> = {};

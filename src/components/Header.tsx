@@ -67,7 +67,7 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
                 </div>
                 <Link 
                   to={`/user/${user?.username?.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="text-sm font-medium text-white hover:text-[#77d4fc] transition-colors cursor-pointer"
+                  className="text-sm font-medium text-white hover:text-[#77d4fc] transition-colors cursor-pointer hover:underline"
                 >
                   {user?.username}
                 </Link>

@@ -44,6 +44,25 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<AuthUser | null>(null);
 
+  // Create demo user data based on username
+  const createDemoUser = (username: string): AuthUser => {
+    return {
+      email: 'demo@example.com',
+      username: username,
+      persona: {
+        moodProfile: "Dark, Intense, Morally Complex",
+        tags: ["Thriller", "Anti-heroes", "Plot Twists"],
+        tvTwin: "@plot_master_77"
+      },
+      watchlist: [
+        { id: '1', name: 'Stranger Things', platform: 'Netflix' },
+        { id: '2', name: 'The Boys', platform: 'Amazon Prime' },
+        { id: '3', name: 'The Witcher', platform: 'Netflix' },
+        { id: '4', name: 'Silicon Valley', platform: 'HBO' }
+      ]
+    };
+  };
+
   // Load user from localStorage on mount
   useEffect(() => {
     const savedUser = localStorage.getItem('tvposts_user');
@@ -58,7 +77,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   const login = (userData: AuthUser) => {
-    setUser(userData);
+    // If no username provided, create demo user
+    const finalUserData = userData.username ? userData : createDemoUser('Demo');
+    setUser(finalUserData);
     localStorage.setItem('tvposts_user', JSON.stringify(userData));
   };
 
