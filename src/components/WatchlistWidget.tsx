@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 const WatchlistWidget: React.FC = () => {
   const { user, removeFromWatchlist } = useAuth();
   const [activeTab, setActiveTab] = useState<'watchlist' | 'ai-recommended'>('watchlist');
+  const [showTooltip, setShowTooltip] = useState(false);
 
   if (!user || !user.watchlist.length) {
     return null;
@@ -20,12 +21,50 @@ const WatchlistWidget: React.FC = () => {
 
   const currentShows = activeTab === 'watchlist' ? user.watchlist : aiRecommendedShows;
 
+  const handleInfoClick = () => {
+    setShowTooltip(!showTooltip);
+  };
+
+  // Close tooltip when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.info-tooltip-container')) {
+        setShowTooltip(false);
+      }
+    };
+
+    if (showTooltip) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showTooltip]);
+
   return (
     <div className="bg-gray-800 rounded-lg p-5 border border-gray-700">
       {/* Header with title */}
-      <div className="flex items-center mb-3">
+      <div className="flex items-center mb-3 relative">
         <h2 className="text-lg font-bold text-white">Watchlist</h2>
-        <Info className="w-4 h-4 text-gray-400 hover:text-white transition-colors duration-200 ml-2 cursor-pointer" />
+        <div className="info-tooltip-container relative">
+          <Info 
+            className="w-4 h-4 text-gray-400 hover:text-white transition-colors duration-200 ml-2 cursor-pointer" 
+            onClick={handleInfoClick}
+          />
+          
+          {/* Tooltip */}
+          {showTooltip && (
+            <div className="absolute top-6 left-0 z-50 w-64 bg-gray-900 border border-gray-600 rounded-lg p-3 shadow-lg animate-fade-in">
+              <div className="text-sm text-gray-300 leading-relaxed">
+                Your initial watchlist is AI-generated based on your answers. Remove shows by clicking the delete icon.
+              </div>
+              {/* Arrow pointing up */}
+              <div className="absolute -top-1 left-3 w-2 h-2 bg-gray-900 border-l border-t border-gray-600 transform rotate-45"></div>
+            </div>
+          )}
+        </div>
       </div>
       
       {/* Full-width tabs below title */}
