@@ -46,7 +46,7 @@ const Post: React.FC<PostProps> = ({
             />
           </a>
           <div>
-            <a href={`/user/${user.username.toLowerCase().replace(/\s+/g, '-')}`}>
+            <Link to={`/user/${user.username.toLowerCase().replace(/\s+/g, '-')}`}>
               <h3 className={`font-medium hover:text-[#77d4fc] transition-colors duration-200 cursor-pointer ${
                 user.isAI ? 'text-purple-400' : 'text-white'
               }`}>
@@ -57,7 +57,7 @@ const Post: React.FC<PostProps> = ({
                   </span>
                 )}
               </h3>
-            </a>
+            </Link>
             <p className="text-gray-400 text-sm">{timestamp}</p>
           </div>
         </div>

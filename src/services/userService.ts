@@ -606,46 +606,42 @@ const userPosts: Record<string, PostData[]> = {
 };
 
 export const getUserData = (username: string): UserProfile | null => {
-  // Handle both the original username and the URL slug format
   const normalizedUsername = username.toLowerCase().replace(/\s+/g, '-');
   
-  // First try to find by the normalized username (URL format)
-  let profile = userProfiles[normalizedUsername];
+  // Create a mapping from normalized usernames to profiles
+  const usernameMap: Record<string, UserProfile> = {};
   
-  // If not found, try to find by matching the actual username field
-  if (!profile) {
-    profile = Object.values(userProfiles).find(p => 
-      p.username.toLowerCase().replace(/\s+/g, '-') === normalizedUsername
-    ) || null;
-  }
+  // Add direct key mappings
+  Object.entries(userProfiles).forEach(([key, profile]) => {
+    usernameMap[key] = profile;
+    // Also map by the actual username normalized
+    const profileSlug = profile.username.toLowerCase().replace(/\s+/g, '-');
+    usernameMap[profileSlug] = profile;
+  });
+  
+  const profile = usernameMap[normalizedUsername];
   
   return profile;
 };
 
 export const getUserPosts = (username: string, offset: number = 0, limit: number = 10): PostData[] => {
-  // Handle both the original username and the URL slug format
   const normalizedUsername = username.toLowerCase().replace(/\s+/g, '-');
   
-  // First try to find posts by the normalized username (URL format)
-  let posts = userPosts[normalizedUsername];
+  // Create a mapping from normalized usernames to post arrays
+  const postsMap: Record<string, PostData[]> = {};
   
-  // If not found, try to find by matching the actual username field
-  if (!posts) {
-    const profile = Object.values(userProfiles).find(p => 
-      p.username.toLowerCase().replace(/\s+/g, '-') === normalizedUsername
-    );
+  // Add direct key mappings
+  Object.entries(userPosts).forEach(([key, posts]) => {
+    postsMap[key] = posts;
+    // Also map by the actual username normalized
+    const profile = userProfiles[key];
     if (profile) {
-      // Find the key that corresponds to this profile
-      const profileKey = Object.keys(userProfiles).find(key => 
-        userProfiles[key] === profile
-      );
-      if (profileKey) {
-        posts = userPosts[profileKey];
-      }
+      const profileSlug = profile.username.toLowerCase().replace(/\s+/g, '-');
+      postsMap[profileSlug] = posts;
     }
-  }
+  });
   
-  posts = posts || [];
+  const posts = postsMap[normalizedUsername] || [];
   
   // Generate additional posts if needed
   const totalPosts = [...posts];
