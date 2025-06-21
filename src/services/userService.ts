@@ -368,6 +368,34 @@ const userPosts: Record<string, PostData[]> = {
       reposts: 12
     }
   ],
+  'seaotter0111': [
+    {
+      id: 'seaotter-1',
+      user: {
+        username: 'seaotter0111',
+        avatar: 'https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '8d',
+      tvTag: 'TheOffice',
+      content: 'Rewatching The Office for the 10th time and it never gets old! Jim and Pam\'s relationship is still the best thing ever.',
+      likes: 24,
+      comments: 5,
+      reposts: 2
+    },
+    {
+      id: 'seaotter-2',
+      user: {
+        username: 'seaotter0111',
+        avatar: 'https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '2w',
+      tvTag: 'Friends',
+      content: 'Could I BE any more excited for the Friends reunion rewatch? The nostalgia hits different every time! ☕',
+      likes: 156,
+      comments: 34,
+      reposts: 12
+    }
+  ],
   'tvfanatic': [
     {
       id: 'fanatic-1',
@@ -406,6 +434,118 @@ const userPosts: Record<string, PostData[]> = {
       timestamp: '3h',
       tvTag: 'BreakingBad',
       content: 'Walter White\'s transformation throughout the series is one of the greatest character arcs in television history. What do you think?',
+      likes: 456,
+      comments: 123,
+      reposts: 67
+    }
+  ],
+  'hawkinsexplorer': [
+    {
+      id: 'hawkins-1',
+      user: {
+        username: 'hawkinsexplorer',
+        avatar: 'https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '1d',
+      tvTag: 'StrangerThings',
+      content: 'I think Will still has a connection to the Upside Down that hasn\'t been fully explored. His behavior suggests there\'s more to his story.',
+      likes: 156,
+      comments: 67,
+      reposts: 12
+    },
+    {
+      id: 'hawkins-2',
+      user: {
+        username: 'hawkinsexplorer',
+        avatar: 'https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '4d',
+      tvTag: 'StrangerThings',
+      content: 'The Upside Down\'s influence on Hawkins goes deeper than we think. I\'ve been mapping the incidents and there\'s definitely a pattern.',
+      likes: 234,
+      comments: 89,
+      reposts: 23
+    }
+  ],
+  'dundermifflin': [
+    {
+      id: 'dunder-1',
+      user: {
+        username: 'dundermifflin',
+        avatar: 'https://images.pexels.com/photos/1040885/pexels-photo-1040885.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '5d',
+      tvTag: 'TheOffice',
+      content: 'My personal ranking of the top 10 episodes from The Office US version. Dinner Party has to be number one, followed by Stress Relief.',
+      likes: 189,
+      comments: 45,
+      reposts: 23
+    },
+    {
+      id: 'dunder-2',
+      user: {
+        username: 'dundermifflin',
+        avatar: 'https://images.pexels.com/photos/1040885/pexels-photo-1040885.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '1w',
+      tvTag: 'TheOffice',
+      content: 'Bears, beets, Battlestar Galactica! Dwight\'s best moments compilation coming soon. The man is a legend.',
+      likes: 345,
+      comments: 78,
+      reposts: 34
+    }
+  ],
+  'centralperkfan': [
+    {
+      id: 'perk-1',
+      user: {
+        username: 'centralPerkFan',
+        avatar: 'https://images.pexels.com/photos/1040886/pexels-photo-1040886.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '6d',
+      tvTag: 'Friends',
+      content: 'The reunion brought back so many memories. What did everyone think? It was emotional seeing the cast together again after all these years.',
+      likes: 145,
+      comments: 89,
+      reposts: 34
+    },
+    {
+      id: 'perk-2',
+      user: {
+        username: 'centralPerkFan',
+        avatar: 'https://images.pexels.com/photos/1040886/pexels-photo-1040886.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '1w',
+      tvTag: 'Friends',
+      content: 'Could I BE any more obsessed with Ross and Rachel\'s relationship? They were on a break! 😂',
+      likes: 267,
+      comments: 56,
+      reposts: 23
+    }
+  ],
+  'slippinjimmy': [
+    {
+      id: 'jimmy-1',
+      user: {
+        username: 'slippinJimmy',
+        avatar: 'https://images.pexels.com/photos/1040889/pexels-photo-1040889.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '4d',
+      tvTag: 'BreakingBad',
+      content: 'The series finale perfectly wrapped up the story. Here\'s my interpretation of the ending and what it means for the characters.',
+      likes: 234,
+      comments: 89,
+      reposts: 45
+    },
+    {
+      id: 'jimmy-2',
+      user: {
+        username: 'slippinJimmy',
+        avatar: 'https://images.pexels.com/photos/1040889/pexels-photo-1040889.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      },
+      timestamp: '1w',
+      tvTag: 'BetterCallSaul',
+      content: 'Better Call Saul\'s character development is unmatched. Jimmy McGill to Saul Goodman - what a journey! It\'s all good, man.',
       likes: 456,
       comments: 123,
       reposts: 67
